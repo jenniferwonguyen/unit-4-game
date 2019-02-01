@@ -1,39 +1,81 @@
 //Global
 var randomResult;
-var lost;
-var win;
+var lost = 0;
+var win = 0;
+var previousNum = 0; 
 
-// setters
-// getters
-
-// $(".crystal").attr('class')
-
-
+var startGame = function () {
 randomResult = Math.floor(Math.random() * 60) + 10; //hoisting random number never goes below 10
-// console.log(randomResult);
 
-$("#result").html('Random Result: ' + randomResult);
-for(var i = 0; i < 4; i++) {
+//a game with 4 crystals and random result
+    $("#result").html('Random Result: ' + randomResult);
+    for(var i = 0; i < 4; i++) {
+ 
+// every crystal needs to have random number between 1 - 12
+        var random = Math.floor(Math.random() * 11) + 1;
 
-    var random = Math.floor(Math.random() * 11) + 1;
-    // console.log(randomNumber);
+        var crystal= $("<div>");
+        crystal.attr({
+            "class": 'crystalBox',
+            "randomData": random
+        });
+        crystal.html(random);
+
+    $(".crystals").append(crystal);
+
+    }
+}
+
+    var resetandStartGame = function () {
+        
+        $(".crystals").empty();
+
+        randomResult = Math.floor(Math.random() * 60) + 10; //hoisting random number never goes below 10
+
+//a game with 4 crystals and random result
+    $("#result").html('Random Result: ' + randomResult);
+        
+    for(var i = 0; i < 4; i++) {
+
+// every crystal needs to have random number between 1 - 12
+        var random = Math.floor(Math.random() * 11) + 1;
 
     var crystal = $("<div>");
         crystal.attr({
             "class": 'crystal',
             "randomData": random
         });
+        crystal.html(random);
 
     $(".crystals").append(crystal);
+
+    }
 }
+    resetandStartGame();
 
-$(".crystal").on('click', function() {
+// When clicking any crystal, it should add with the previous result    
+    $(".crystal").on("click", function() {
     
-    console.log($(this).attr("randomData"));
+    var num = parseInt($(this).attr("randomData"));
+    
+    previousNum += num;
 
-})
+    console.log(previousNum);
 
+    if(previousNum > randomResult) {
+        lost--;
+        $("#lost").html(ost);
 
+        resetandStartGame();
+    }
+    else if (previousNum === randomResult) {
+        win++;
+        $('#win').html(win);
+
+        resetandStartGame();
+    }
+
+});
 
 
 // pseudo coding
