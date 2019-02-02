@@ -9,7 +9,11 @@ var startGame = function () {
 randomResult = Math.floor(Math.random() * 60) + 10; //hoisting random number never goes below 10
 
 //a game with 4 crystals and random result
+    $("#result").empty()
     $("#result").html('Random Result: ' + randomResult);
+    $("#resultBox").empty()
+        $("#resultBox").html("Total: " + 0)
+
     for(var i = 0; i < 4; i++) {
  
 // every crystal needs to have random number between 1 - 12
@@ -37,13 +41,13 @@ startGame()
         console.log(totalNum);
         
         // put the totalNum on DOM- PUT IN SCOREBOX
+        // $("#win").html('Win: ' + totalNum);
+        // $("#lost").html('Lost: ' );
 
 
-    // var num = parseInt($(this).attr("randomData"));
-    
-    // previousNum += num;
+        // total from each click
+        $("#resultBox").html('Total: ' + totalNum);
 
-    // console.log(previousNum);
 
     if(totalNum > randomResult) {
         console.log('loss');

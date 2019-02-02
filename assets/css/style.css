@@ -34,13 +34,19 @@ body {
     height: 200px;
     width: 20 px;
 }
+.scoreBox {
+    background-color: red;
+    padding-right: 1em;
+    width: 25%;
+    padding-bottom: 2em;
+}
 #tBox {
     background-color: teal;
     width: 25%;
     margin-bottom: 1em;
     margin-top: 1em;
 }
-#scoreBox {
+#resultBox {
     background-color: teal;
     width: 25%;
     padding-bottom: 4em;
