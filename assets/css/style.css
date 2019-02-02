@@ -24,11 +24,11 @@ body {
     width: 40%;
 
 }
-.crystals {
+/* .crystals {
     display: flex;
     justify-content: space-around;
     border: 1px solid red;
-}
+} */
 .crystal {
     border: 1px solid green;
     height: 200px;

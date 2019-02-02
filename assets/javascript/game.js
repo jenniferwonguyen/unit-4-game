@@ -2,9 +2,10 @@
 var randomResult;
 var lost = 0;
 var win = 0;
-var previousNum = 0; 
+var totalNum = 0; 
 
 var startGame = function () {
+    totalNum = 0
 randomResult = Math.floor(Math.random() * 60) + 10; //hoisting random number never goes below 10
 
 //a game with 4 crystals and random result
@@ -12,68 +13,53 @@ randomResult = Math.floor(Math.random() * 60) + 10; //hoisting random number nev
     for(var i = 0; i < 4; i++) {
  
 // every crystal needs to have random number between 1 - 12
-        var random = Math.floor(Math.random() * 11) + 1;
+        var random = Math.floor(Math.random() * 12) + 1;
+            // jQuery .val()
+            // assign each crystal a value 
+            $('.crystal1').val(Math.floor(Math.random() * 12) + 1)
+            $('.crystal2').val(Math.floor(Math.random() * 12) + 1)
+            $('.crystal3').val(Math.floor(Math.random() * 12) + 1)
+            $('.crystal4').val(Math.floor(Math.random() * 12) + 1)
 
-        var crystal= $("<div>");
-        crystal.attr({
-            "class": 'crystalBox',
-            "randomData": random
-        });
-        crystal.html(random);
-
-    $(".crystals").append(crystal);
 
     }
 }
 
-    var resetandStartGame = function () {
-        
-        $(".crystals").empty();
 
-        randomResult = Math.floor(Math.random() * 60) + 10; //hoisting random number never goes below 10
-
-//a game with 4 crystals and random result
-    $("#result").html('Random Result: ' + randomResult);
-        
-    for(var i = 0; i < 4; i++) {
-
-// every crystal needs to have random number between 1 - 12
-        var random = Math.floor(Math.random() * 11) + 1;
-
-    var crystal = $("<div>");
-        crystal.attr({
-            "class": 'crystal',
-            "randomData": random
-        });
-        crystal.html(random);
-
-    $(".crystals").append(crystal);
-
-    }
-}
-    resetandStartGame();
+startGame()
 
 // When clicking any crystal, it should add with the previous result    
-    $(".crystal").on("click", function() {
+    $(".crystals").on("click", function() {
+        console.log('click');
+        console.log($(this).val())
+        
+    totalNum += parseInt($(this).val())
+        console.log(totalNum);
+        
+        // put the totalNum on DOM- PUT IN SCOREBOX
+
+
+    // var num = parseInt($(this).attr("randomData"));
     
-    var num = parseInt($(this).attr("randomData"));
-    
-    previousNum += num;
+    // previousNum += num;
 
-    console.log(previousNum);
+    // console.log(previousNum);
 
-    if(previousNum > randomResult) {
-        lost--;
-        $("#lost").html(ost);
-
-        resetandStartGame();
+    if(totalNum > randomResult) {
+        console.log('loss');
+        
+        lost++;
+        $("#lost").html(lost);
+        startGame();
     }
-    else if (previousNum === randomResult) {
+    else if (totalNum === randomResult) {
+        console.log('win');
+        
         win++;
         $('#win').html(win);
 
-        resetandStartGame();
-    }
+        startGame();
+     }
 
 });
 
